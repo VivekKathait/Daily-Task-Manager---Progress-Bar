@@ -87,7 +87,7 @@ li {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  margin-left: 60px;
+  margin-left: 100px;
   margin-right: 0; /* 🔥 reduced gap */
   accent-color: #22c55e;
   cursor: pointer;
