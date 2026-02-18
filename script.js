@@ -23,7 +23,6 @@ window.addEventListener("resize", resizeCanvas);
 
 loadTasks();
 
-/* ⭐ FIX HERE */
 addBtn.addEventListener("click", () => addTask());
 
 taskInput.addEventListener("keypress", e => {
@@ -102,11 +101,20 @@ function updateProgress() {
   progressBar.style.width = percent + "%";
   percentageText.textContent = percent + "% Complete";
 
-  if (percent <= 25) progressBar.style.backgroundColor = "white";
-  else if (percent <= 50) progressBar.style.backgroundColor = "orange";
-  else if (percent <= 75) progressBar.style.backgroundColor = "blue";
-  else if (percent < 100) progressBar.style.backgroundColor = "yellow";
-  else progressBar.style.backgroundColor = "green";
+  // ✅ Updated color logic
+  if (percent <= 20) {
+    progressBar.style.backgroundColor = "red";
+  } else if (percent <= 40) {
+    progressBar.style.backgroundColor = "darkorange";
+  } else if (percent <= 60) {
+    progressBar.style.backgroundColor = "orange";
+  } else if (percent <= 80) {
+    progressBar.style.backgroundColor = "#eab308";
+  } else if (percent < 100) {
+    progressBar.style.backgroundColor = "#fde047";
+  } else {
+    progressBar.style.backgroundColor = "green";
+  }
 
   if (percent === 100 && total > 0) {
     celebration.style.display = "block";
