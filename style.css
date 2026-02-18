@@ -101,7 +101,7 @@ li {
   padding: 2px 8px;
   border: none;
   flex-shrink: 0;
-  margin-left: 4px; /* 🔥 small controlled spacing */
+  margin-left: 1px; /* 🔥 small controlled spacing */
 }
 
 .remove-btn:hover {
