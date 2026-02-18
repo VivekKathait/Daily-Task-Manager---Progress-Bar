@@ -14,7 +14,6 @@ let animationId = null;
 let confettiRunning = false;
 let confettiTimeout = null;
 
-// Resize canvas
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -22,16 +21,15 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// Load tasks
 loadTasks();
 
-// Add task
-addBtn.addEventListener("click", addTask);
+/* ⭐ FIX HERE */
+addBtn.addEventListener("click", () => addTask());
+
 taskInput.addEventListener("keypress", e => {
   if (e.key === "Enter") addTask();
 });
 
-// Clear all tasks
 clearAllBtn.addEventListener("click", () => {
   taskList.innerHTML = "";
   localStorage.removeItem("tasks");
@@ -95,7 +93,6 @@ function loadTasks() {
   stored.forEach(task => addTask(task.text, task.completed));
 }
 
-// Progress + confetti trigger
 function updateProgress() {
   const checkboxes = taskList.querySelectorAll(".task-checkbox");
   const total = checkboxes.length;
@@ -105,18 +102,11 @@ function updateProgress() {
   progressBar.style.width = percent + "%";
   percentageText.textContent = percent + "% Complete";
 
-  // ✅ Progress bar color ranges
-  if (percent <= 25) {
-    progressBar.style.backgroundColor = "white";
-  } else if (percent <= 50) {
-    progressBar.style.backgroundColor = "orange";
-  } else if (percent <= 75) {
-    progressBar.style.backgroundColor = "blue";
-  } else if (percent < 100) {
-    progressBar.style.backgroundColor = "yellow";
-  } else {
-    progressBar.style.backgroundColor = "green";
-  }
+  if (percent <= 25) progressBar.style.backgroundColor = "white";
+  else if (percent <= 50) progressBar.style.backgroundColor = "orange";
+  else if (percent <= 75) progressBar.style.backgroundColor = "blue";
+  else if (percent < 100) progressBar.style.backgroundColor = "yellow";
+  else progressBar.style.backgroundColor = "green";
 
   if (percent === 100 && total > 0) {
     celebration.style.display = "block";
@@ -127,7 +117,7 @@ function updateProgress() {
   }
 }
 
-/* CONFETTI ANIMATION */
+/* CONFETTI */
 
 function startConfetti() {
   if (confettiRunning) return;
