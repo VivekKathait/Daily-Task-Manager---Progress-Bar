@@ -1,4 +1,3 @@
-
 const taskInput = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
@@ -10,10 +9,19 @@ const canvas = document.getElementById("confettiCanvas");
 const ctx = canvas.getContext("2d");
 
 let confetti = [];
-let animation;
+let animation = null;
 let confettiTimeout = null;
 let confettiRunning = false;
 
+// Resize canvas properly
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+// Event listeners
 addBtn.addEventListener("click", addTask);
 taskInput.addEventListener("keypress", e => {
   if (e.key === "Enter") addTask();
@@ -62,6 +70,7 @@ function updateProgress() {
   progressBar.style.width = percent + "%";
   percentageText.textContent = percent + "% Complete";
 
+  // Progress bar colors
   if (percent <= 25) progressBar.style.background = "white";
   else if (percent <= 50) progressBar.style.background = "#3b82f6";
   else if (percent <= 75) progressBar.style.background = "#f97316";
@@ -77,13 +86,12 @@ function updateProgress() {
   }
 }
 
-/* 🎉 Confetti Logic (5 seconds only) */
+/* Confetti Animation */
 function startConfetti() {
   if (confettiRunning) return;
 
   confettiRunning = true;
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  resizeCanvas();
 
   confetti = Array.from({ length: 200 }, () => ({
     x: Math.random() * canvas.width,
@@ -94,7 +102,6 @@ function startConfetti() {
   }));
 
   animateConfetti();
-
   confettiTimeout = setTimeout(stopConfetti, 5000);
 }
 
@@ -116,8 +123,9 @@ function animateConfetti() {
 
 function stopConfetti() {
   confettiRunning = false;
-  cancelAnimationFrame(animation);
-  clearTimeout(confettiTimeout);
+
+  if (animation) cancelAnimationFrame(animation);
+  if (confettiTimeout) clearTimeout(confettiTimeout);
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-
