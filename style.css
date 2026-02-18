@@ -1,0 +1,129 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #e5e7eb;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.app {
+  width: 420px;
+  background: #020617;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-box {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #22c55e;
+  color: #020617;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #16a34a;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #22c55e;
+  cursor: pointer;
+}
+
+.remove-btn {
+  background: #ef4444;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.remove-btn:hover {
+  background: #dc2626;
+}
+
+.progress-container {
+  background: #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+  height: 20px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: white;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.percentage {
+  text-align: center;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+.celebration {
+  display: none;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.celebration h1 {
+  font-size: 28px;
+  color: #22c55e;
+}
+
+#confettiCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
