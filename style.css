@@ -139,10 +139,10 @@ li {
 .clear-btn {
   margin-top: 20px;
   width: 100%;
-  background: #ef4444;
+  background: #89CFF0;
   color: white;
 }
 
 .clear-btn:hover {
-  background: #dc2626;
+  background: #0000FF;
 }
