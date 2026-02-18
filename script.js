@@ -112,9 +112,9 @@ if (percent <= 20) {
 } else if (percent <= 80) {
   progressBar.style.backgroundColor = "yellow";
 } else if (percent < 100) {
-  progressBar.style.backgroundColor = "teal";
+  progressBar.style.backgroundColor = "cyan";
 } else {
-  progressBar.style.backgroundColor = "green";
+  progressBar.style.backgroundColor = "lime";
 }
 
 
