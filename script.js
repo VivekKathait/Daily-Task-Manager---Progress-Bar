@@ -6,7 +6,23 @@ const progressBar = document.getElementById("progressBar");
 const percentageText = document.getElementById("percentageText");
 const celebration = document.getElementById("celebration");
 
-// Load saved tasks when page opens
+const canvas = document.getElementById("confettiCanvas");
+const ctx = canvas.getContext("2d");
+
+let confetti = [];
+let animationId = null;
+let confettiRunning = false;
+let confettiTimeout = null;
+
+// Resize canvas
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+// Load tasks
 loadTasks();
 
 // Add task
@@ -15,11 +31,12 @@ taskInput.addEventListener("keypress", e => {
   if (e.key === "Enter") addTask();
 });
 
-// Create New button (clear all tasks)
+// Clear all tasks
 clearAllBtn.addEventListener("click", () => {
   taskList.innerHTML = "";
   localStorage.removeItem("tasks");
   updateProgress();
+  stopConfetti();
 });
 
 function addTask(text = null, completed = false) {
@@ -62,7 +79,6 @@ function addTask(text = null, completed = false) {
   saveTasks();
 }
 
-// Save tasks to localStorage
 function saveTasks() {
   const tasks = [];
   document.querySelectorAll("#taskList li").forEach(li => {
@@ -71,17 +87,15 @@ function saveTasks() {
       completed: li.querySelector("input").checked
     });
   });
-
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// Load tasks after refresh
 function loadTasks() {
   const stored = JSON.parse(localStorage.getItem("tasks")) || [];
   stored.forEach(task => addTask(task.text, task.completed));
 }
 
-// Update progress bar
+// Progress + confetti trigger
 function updateProgress() {
   const checkboxes = taskList.querySelectorAll(".task-checkbox");
   const total = checkboxes.length;
@@ -93,7 +107,51 @@ function updateProgress() {
 
   if (percent === 100 && total > 0) {
     celebration.style.display = "block";
+    startConfetti();
   } else {
     celebration.style.display = "none";
+    stopConfetti();
   }
+}
+
+/* CONFETTI ANIMATION */
+
+function startConfetti() {
+  if (confettiRunning) return;
+
+  confettiRunning = true;
+
+  confetti = Array.from({ length: 200 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 6 + 2,
+    d: Math.random() * 5 + 2,
+    color: `hsl(${Math.random() * 360},100%,50%)`
+  }));
+
+  animateConfetti();
+  confettiTimeout = setTimeout(stopConfetti, 5000);
+}
+
+function animateConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  confetti.forEach(c => {
+    ctx.beginPath();
+    ctx.fillStyle = c.color;
+    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+    ctx.fill();
+
+    c.y += c.d;
+    if (c.y > canvas.height) c.y = 0;
+  });
+
+  animationId = requestAnimationFrame(animateConfetti);
+}
+
+function stopConfetti() {
+  confettiRunning = false;
+  cancelAnimationFrame(animationId);
+  clearTimeout(confettiTimeout);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
