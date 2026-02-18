@@ -139,3 +139,14 @@ li {
   height: 100%;
   z-index: 999;
 }
+
+.clear-btn {
+  margin-top: 20px;
+  width: 100%;
+  background: #ef4444;
+  color: white;
+}
+
+.clear-btn:hover {
+  background: #dc2626;
+}
