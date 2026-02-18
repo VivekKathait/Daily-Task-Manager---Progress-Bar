@@ -6,6 +6,7 @@ const progressBar = document.getElementById("progressBar");
 const percentageText = document.getElementById("percentageText");
 const celebration = document.getElementById("celebration");
 
+// Load saved tasks when page opens
 loadTasks();
 
 // Add task
@@ -14,7 +15,7 @@ taskInput.addEventListener("keypress", e => {
   if (e.key === "Enter") addTask();
 });
 
-// Clear all tasks
+// Create New button (clear all tasks)
 clearAllBtn.addEventListener("click", () => {
   taskList.innerHTML = "";
   localStorage.removeItem("tasks");
@@ -61,7 +62,7 @@ function addTask(text = null, completed = false) {
   saveTasks();
 }
 
-// Save tasks
+// Save tasks to localStorage
 function saveTasks() {
   const tasks = [];
   document.querySelectorAll("#taskList li").forEach(li => {
@@ -70,6 +71,7 @@ function saveTasks() {
       completed: li.querySelector("input").checked
     });
   });
+
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
@@ -79,7 +81,7 @@ function loadTasks() {
   stored.forEach(task => addTask(task.text, task.completed));
 }
 
-// Progress bar
+// Update progress bar
 function updateProgress() {
   const checkboxes = taskList.querySelectorAll(".task-checkbox");
   const total = checkboxes.length;
