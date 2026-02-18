@@ -82,18 +82,18 @@ li {
   word-break: break-word;
 }
 
-/* CHECKBOX FIXED COLUMN */
+/* CHECKBOX */
 .task-checkbox {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
   margin-left: auto;
-  margin-right: 2px; /* small tight gap */
+  margin-right: 0; /* 🔥 reduced gap */
   accent-color: #22c55e;
   cursor: pointer;
 }
 
-/* DELETE BUTTON FIXED COLUMN */
+/* DELETE BUTTON */
 .remove-btn {
   background: #ef4444;
   color: white;
@@ -101,6 +101,7 @@ li {
   padding: 2px 8px;
   border: none;
   flex-shrink: 0;
+  margin-left: 4px; /* 🔥 small controlled spacing */
 }
 
 .remove-btn:hover {
@@ -158,5 +159,3 @@ li {
 .clear-btn:hover {
   background: #0000FF;
 }
-
-
