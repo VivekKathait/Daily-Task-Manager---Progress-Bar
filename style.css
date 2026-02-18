@@ -21,7 +21,7 @@ body {
   background: #020617;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
   position: relative;
 }
 
@@ -51,7 +51,6 @@ button {
   color: #020617;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 button:hover {
@@ -86,12 +85,10 @@ li {
 
 .remove-btn {
   background: #ef4444;
-  border: none;
   color: white;
   border-radius: 4px;
   padding: 2px 8px;
-  cursor: pointer;
-  font-weight: bold;
+  border: none;
 }
 
 .remove-btn:hover {
@@ -110,7 +107,7 @@ li {
   height: 100%;
   width: 0%;
   background: white;
-  transition: width 0.3s ease, background 0.3s ease;
+  transition: 0.3s;
 }
 
 .percentage {
@@ -126,7 +123,6 @@ li {
 }
 
 .celebration h1 {
-  font-size: 28px;
   color: #22c55e;
 }
 
