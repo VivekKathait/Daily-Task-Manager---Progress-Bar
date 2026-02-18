@@ -102,19 +102,21 @@ function updateProgress() {
   percentageText.textContent = percent + "% Complete";
 
   // ✅ Updated color logic
-  if (percent <= 20) {
-    progressBar.style.backgroundColor = "red";
-  } else if (percent <= 40) {
-    progressBar.style.backgroundColor = "darkorange";
-  } else if (percent <= 60) {
-    progressBar.style.backgroundColor = "orange";
-  } else if (percent <= 80) {
-    progressBar.style.backgroundColor = "#eab308";
-  } else if (percent < 100) {
-    progressBar.style.backgroundColor = "#fde047";
-  } else {
-    progressBar.style.backgroundColor = "green";
-  }
+  // Updated distinct color logic
+if (percent <= 20) {
+  progressBar.style.backgroundColor = "red";
+} else if (percent <= 40) {
+  progressBar.style.backgroundColor = "orange";
+} else if (percent <= 60) {
+  progressBar.style.backgroundColor = "gold";
+} else if (percent <= 80) {
+  progressBar.style.backgroundColor = "yellow";
+} else if (percent < 100) {
+  progressBar.style.backgroundColor = "lime";
+} else {
+  progressBar.style.backgroundColor = "green";
+}
+
 
   if (percent === 100 && total > 0) {
     celebration.style.display = "block";
