@@ -62,39 +62,38 @@ ul {
   margin-top: 15px;
 }
 
-/* FIXED TASK ROW */
+/* TASK ROW */
 li {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 8px;
-  gap: 10px;
 }
 
-/* LEFT SIDE (TEXT + CHECKBOX) */
+/* LEFT PART */
 .task-left {
   display: flex;
   align-items: center;
-  gap: 10px;
   flex: 1;
 }
 
-/* TEXT FLEX CONTROL */
+/* TASK TEXT */
 .task-left span {
   flex: 1;
-  min-width: 0;
   word-break: break-word;
 }
 
-/* FIXED CHECKBOX SIZE */
+/* CHECKBOX FIXED COLUMN */
 .task-checkbox {
   width: 20px;
   height: 20px;
-  flex: 0 0 20px;
+  flex-shrink: 0;
+  margin-left: auto; /* pushes checkbox beside delete button */
+  margin-right: 8px;
   accent-color: #22c55e;
   cursor: pointer;
 }
 
+/* DELETE BUTTON FIXED COLUMN */
 .remove-btn {
   background: #ef4444;
   color: white;
