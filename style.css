@@ -62,23 +62,35 @@ ul {
   margin-top: 15px;
 }
 
+/* FIXED TASK ROW */
 li {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;
+  gap: 10px;
 }
 
+/* LEFT SIDE (TEXT + CHECKBOX) */
 .task-left {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   flex: 1;
 }
 
+/* TEXT FLEX CONTROL */
+.task-left span {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
+/* FIXED CHECKBOX SIZE */
 .task-checkbox {
   width: 20px;
   height: 20px;
+  flex: 0 0 20px;
   accent-color: #22c55e;
   cursor: pointer;
 }
@@ -89,6 +101,7 @@ li {
   border-radius: 4px;
   padding: 2px 8px;
   border: none;
+  flex-shrink: 0;
 }
 
 .remove-btn:hover {
