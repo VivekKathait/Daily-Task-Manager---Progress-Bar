@@ -1,4 +1,5 @@
 const taskInput = document.getElementById("taskInput");
+const timeInput = document.getElementById("timeInput");
 const addBtn = document.getElementById("addBtn");
 const clearAllBtn = document.getElementById("clearAllBtn");
 const taskList = document.getElementById("taskList");
@@ -29,6 +30,10 @@ taskInput.addEventListener("keypress", e => {
   if (e.key === "Enter") addTask();
 });
 
+timeInput.addEventListener("keypress", e => {
+  if (e.key === "Enter") addTask();
+});
+
 clearAllBtn.addEventListener("click", () => {
   taskList.innerHTML = "";
   localStorage.removeItem("tasks");
@@ -36,8 +41,10 @@ clearAllBtn.addEventListener("click", () => {
   stopConfetti();
 });
 
-function addTask(text = null, completed = false) {
+function addTask(text = null, completed = false, time = null) {
   const taskText = text || taskInput.value.trim();
+  const taskTime = time || timeInput.value.trim();
+
   if (!taskText) return;
 
   const li = document.createElement("li");
@@ -48,6 +55,10 @@ function addTask(text = null, completed = false) {
   const span = document.createElement("span");
   span.textContent = taskText;
 
+  const timeBox = document.createElement("div");
+  timeBox.className = "task-time";
+  timeBox.textContent = taskTime || "-";
+
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.className = "task-checkbox";
@@ -57,7 +68,7 @@ function addTask(text = null, completed = false) {
     saveTasks();
   });
 
-  left.append(span, checkbox);
+  left.append(span, timeBox, checkbox);
 
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "-";
@@ -72,6 +83,8 @@ function addTask(text = null, completed = false) {
   taskList.appendChild(li);
 
   taskInput.value = "";
+  timeInput.value = "";
+
   updateProgress();
   saveTasks();
 }
@@ -81,6 +94,7 @@ function saveTasks() {
   document.querySelectorAll("#taskList li").forEach(li => {
     tasks.push({
       text: li.querySelector("span").textContent,
+      time: li.querySelector(".task-time").textContent,
       completed: li.querySelector("input").checked
     });
   });
@@ -89,7 +103,7 @@ function saveTasks() {
 
 function loadTasks() {
   const stored = JSON.parse(localStorage.getItem("tasks")) || [];
-  stored.forEach(task => addTask(task.text, task.completed));
+  stored.forEach(task => addTask(task.text, task.completed, task.time));
 }
 
 function updateProgress() {
@@ -101,22 +115,19 @@ function updateProgress() {
   progressBar.style.width = percent + "%";
   percentageText.textContent = percent + "% Complete";
 
-  // ✅ Updated color logic
-  // Updated distinct color logic
-if (percent <= 20) {
-  progressBar.style.backgroundColor = "red";
-} else if (percent <= 40) {
-  progressBar.style.backgroundColor = "orange";
-} else if (percent <= 60) {
-  progressBar.style.backgroundColor = "gold";
-} else if (percent <= 80) {
-  progressBar.style.backgroundColor = "yellow";
-} else if (percent < 100) {
-  progressBar.style.backgroundColor = "cyan";
-} else {
-  progressBar.style.backgroundColor = "lime";
-}
-
+  if (percent <= 20) {
+    progressBar.style.backgroundColor = "red";
+  } else if (percent <= 40) {
+    progressBar.style.backgroundColor = "orange";
+  } else if (percent <= 60) {
+    progressBar.style.backgroundColor = "gold";
+  } else if (percent <= 80) {
+    progressBar.style.backgroundColor = "yellow";
+  } else if (percent < 100) {
+    progressBar.style.backgroundColor = "cyan";
+  } else {
+    progressBar.style.backgroundColor = "lime";
+  }
 
   if (percent === 100 && total > 0) {
     celebration.style.display = "block";
