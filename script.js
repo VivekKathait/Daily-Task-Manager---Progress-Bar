@@ -179,9 +179,9 @@ import { getFirestore }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR KEY",
-  authDomain: "YOUR DOMAIN",
-  projectId: "YOUR ID"
+  apiKey: "AIzaSyDUXup2t7fiSjWGG5tEWQ1KzGCGEfXYClU",
+  authDomain: "sign-up-page-vivek-tools.firebaseapp.com",
+  projectId: "sign-up-page-vivek-tools"
 };
 
 const app = initializeApp(firebaseConfig);
