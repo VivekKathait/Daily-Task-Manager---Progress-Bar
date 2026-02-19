@@ -168,3 +168,31 @@ function stopConfetti() {
   clearTimeout(confettiTimeout);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
+
+import { initializeApp } from 
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { getAuth, GoogleAuthProvider, signInWithPopup }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import { getFirestore }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR KEY",
+  authDomain: "YOUR DOMAIN",
+  projectId: "YOUR ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const provider = new GoogleAuthProvider();
+
+document.getElementById("loginBtn").onclick = () => {
+  signInWithPopup(auth, provider)
+    .then(result => {
+      alert("Welcome " + result.user.displayName);
+    });
+};
