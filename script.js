@@ -168,31 +168,3 @@ function stopConfetti() {
   clearTimeout(confettiTimeout);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-
-import { initializeApp } from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import { getAuth, GoogleAuthProvider, signInWithPopup }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-import { getFirestore }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDUXup2t7fiSjWGG5tEWQ1KzGCGEfXYClU",
-  authDomain: "sign-up-page-vivek-tools.firebaseapp.com",
-  projectId: "sign-up-page-vivek-tools"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-const provider = new GoogleAuthProvider();
-
-document.getElementById("loginBtn").onclick = () => {
-  signInWithPopup(auth, provider)
-    .then(result => {
-      alert("Welcome " + result.user.displayName);
-    });
-};
